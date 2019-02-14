@@ -55,19 +55,11 @@ As a first step, I decided to convert the images to grayscale because it would b
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][image2]
+![alt text][bumpy.jpg]
+![alt text][gray.jpg]
 
-As a last step, I normalized the image data because ...
 
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+As a last step, I normalized the image data because features haveing the same mean and standard deviation will make the gradient decent faster
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -77,14 +69,22 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Conv1 5x5     	|stride:(1,1), padding:valid, outputs:32x32x64 	|
+| BatchNorm					|												|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Max1	2x2     | stride:(2,2),  outputs:14x14x16 				|
+| Conv2 5x5   | stride:(1,1), padding:valid, outputs:10x10x16  |
+| BatchNorm					|												|
+| RELU					|												|
+| Max2	2x2     | stride:(2,2),  outputs:5x5x16 				|
+| Conv3 3x3   | stride:(1,1), padding:valid, outputs:5x5x16  |
+| BatchNorm					|												|
+| RELU					|												|
+| Fully1		| output:120  |
+| RELU					|												|
+| Fully2		| output:84   |
+| RELU					|												|
+| Fully3		| output:43   |
  
 
 
