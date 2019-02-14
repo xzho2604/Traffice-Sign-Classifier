@@ -45,7 +45,7 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
-![alt text][data_visual.png]
+![alt text](data_visual.png)
 
 ### Design and Test a Model Architecture
 
@@ -55,8 +55,8 @@ As a first step, I decided to convert the images to grayscale because it would b
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][bumpy.jpg]
-![alt text][gray.jpg]
+![alt text](bumpy.jpg)
+![alt text](gray.jpg)
 
 
 As a last step, I normalized the image data because features haveing the same mean and standard deviation will make the gradient decent faster
@@ -139,8 +139,8 @@ It use CNN ,but let the nn to learn the architeture itself and therefore provide
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][stop.jpg] ![alt text][roadwork.jpg] ![alt text][pedestrian.jpg] 
-![alt text][double_curve.jpg] ![alt text][bumpy.jpg]
+![alt text](stop.jpg) ![alt text](roadwork.jpg) ![alt text](pedestrian.jpg) 
+![alt text](double_curve.jpg) ![alt text](bumpy.jpg)
 
 The double image might be difficult to classify because it looks very similar to ther signs
 
