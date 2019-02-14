@@ -90,27 +90,48 @@ My final model consisted of the following layers:
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+I have used batch normorlisation during the training which does help the model train faster.
+the optimiser that I used is Adam since it generally perfomrs better.
+Batch size is 128 , I have tried couple of different sizes and it turns out that 128 is the best
+Epoches is 50 , and it swing a bit for the later stage but 50 is sufficient for the validation accuracy to be above 93%
+Learning rate is 0.001, and it learn really fast at the begining and would be better would during later epoch could make rate smaller to take smaller steps so that would probabily eliminate the swing problem for the later epoch.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
+as above, explained the reason that I have chosen thoes hyper parametres.
+
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 1
+* validation set accuracy of 0.949 
+* test set accuracy of 0.934
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+LeNet was firstly tried, familiar with this model and it performs relatively well
+
 * What were some problems with the initial architecture?
+The conv layer is too simply for this problem and validation accuracy is not very high
+
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+I have added couple of batchnorm before relu activation in the convNet and it has quicken the training process.
+I have also added additional layer of the convent to increase the complexity of the nn to fit the data better ,and it turns out that it increase the predition accuracy a lot.
+
 * Which parameters were tuned? How were they adjusted and why?
+I have tried different batch size and it turns out that 128 is the best option.
+The Epoch time ,I have just set it reletively big and see where to cut it off, and it turns out that 50 is a reasonable number since around 50 epoch the learning stagnate and start to swing around.
+Learning Rate, turns ont 0.001 works well , and smaller or bigger  would not produce better result
+
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+convNet would work, since traffic sign could be abstracted lot of features , like shape , and edges and could be detected by the convNet. 
+If the ConvNet gets complicated dropout regulisation would be effective for overfitting of hte training data
 
 If a well known architecture was chosen:
 * What architecture was chosen?
+Inception
 * Why did you believe it would be relevant to the traffic sign application?
+It use CNN ,but let the nn to learn the architeture itself and therefore provides the best solution
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+ Yes, since there is not too big gap in between the 3 sets and probabily a slight regulisation would help better.
 
 ### Test a Model on New Images
 
@@ -118,10 +139,10 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][stop.jpg] ![alt text][roadwork.jpg] ![alt text][pedestrian.jpg] 
+![alt text][double_curve.jpg] ![alt text][bumpy.jpg]
 
-The first image might be difficult to classify because ...
+The double image might be difficult to classify because it looks very similar to ther signs
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -130,13 +151,13 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Roadwork     			| Roadwork 										|
+| Pedestrian					| Speed limit 20											|
+| Bumpy Road     		| Bumpy Road					 				|
+| Double Curve	| Children Crossing   							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. This is bit different to the test set , due to the fact that the online image might not corp the same way ,and therefore not the same distribution from the database in the training test set provided.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -146,11 +167,11 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .42         			| Stop sign   									| 
+| .26     				| Pedestrian										|
+| .12					| Roadwork							|
+| .47	      			| Double Curve				 				|
+| .51				    | Bumpy Road	     							|
 
 
 For the second image ... 
